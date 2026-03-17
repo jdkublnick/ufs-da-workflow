@@ -1,0 +1,9 @@
+WARNING: could not open bibtex file C:\Users\joshu\ufs-da-workflow\doc\source\references.bib.
+C:\Users\joshu\ufs-da-workflow\doc\source\BuildingRunningTesting/Quickstart.rst:9: CRITICAL: Problems with "include" directive path:
+InputError: [Errno 2] No such file or directory: 'source/doc-snippets/gcblizzard-desc.rst'.
+C:\Users\joshu\ufs-da-workflow\doc\source\BuildingRunningTesting\index.rst:6: WARNING: toctree contains reference to nonexisting document 'BuildingRunningTesting/QuickStartGuide'
+C:\Users\joshu\ufs-da-workflow\doc\source\index.rst:7: WARNING: toctree contains reference to nonexisting document 'QuickStart/index'
+C:\Users\joshu\ufs-da-workflow\doc\source\BuildingRunningTesting/Quickstart.rst: WARNING: document isn't included in any toctree
+C:\Users\joshu\ufs-da-workflow\doc\source\BuildingRunningTesting/index.rst: WARNING: document isn't included in any toctree
+C:\Users\joshu\ufs-da-workflow\doc\source\BuildingRunningTesting\Quickstart.rst:13: WARNING: undefined label: 'levelsofsupport'
+C:\Users\joshu\ufs-da-workflow\doc\source\BuildingRunningTesting\Quickstart.rst:98: WARNING: term not in glossary: 'RDHPCS'

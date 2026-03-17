@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running the UFS DA Workflow &mdash; UFS DA Workflow User&#39;s Guide develop documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=044582d4" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=3db8afb0" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=16816911"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            UFS DA Workflow User's Guide
+              <img src="https://github.com/ufs-community/ufs/wiki/images/ufs-epic-logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                develop
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Running the UFS DA Workflow</a><ul>
+<li><a class="reference internal" href="#get-code">Get Code</a></li>
+<li><a class="reference internal" href="#build-and-run-the-da-workflow">Build and Run the DA Workflow</a></li>
+<li><a class="reference internal" href="#load-the-workflow-environment">Load the Workflow Environment</a></li>
+<li><a class="reference internal" href="#modify-the-workflow-configuration-yaml">Modify the Workflow Configuration YAML</a></li>
+<li><a class="reference internal" href="#set-up-and-launch-the-workflow">Set Up and Launch the Workflow</a></li>
+<li><a class="reference internal" href="#check-the-result-and-log-files">Check the result and log files</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">UFS DA Workflow User's Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Running the UFS DA Workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/BuildingRunningTesting/Quickstart.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-the-ufs-da-workflow">
+<span id="quickstart"></span><h1>Running the UFS DA Workflow<a class="headerlink" href="#running-the-ufs-da-workflow" title="Link to this heading"></a></h1>
+<p>This chapter provides instructions for building and running the Unified Forecast System (<a class="reference external" href="https://spack-stack.readthedocs.io/en/1.6.0/Glossary.html#term-UFS" title="(in spack-stack v1.6)"><span class="xref std std-term">UFS</span></a>) DA Workflow System.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>These steps are designed for use on <span class="xref std std-ref">Level 1</span> systems (e.g., Ursa, Orion, Hercules, Gaea-C6 and Derecho.)</p>
+</div>
+<section id="get-code">
+<span id="getcode"></span><h2>Get Code<a class="headerlink" href="#get-code" title="Link to this heading"></a></h2>
+<p>Clone the Land DA workflow repository. To clone the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch, run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone -b develop --recursive https://github.com/ufs-community/ufs-da-workflow</span>
+</pre></div>
+</div>
+</section>
+<section id="build-and-run-the-da-workflow">
+<span id="buildandrun"></span><h2>Build and Run the DA Workflow<a class="headerlink" href="#build-and-run-the-da-workflow" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">sorc</span></code> directory.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ${BASEDIR}/ufs-da-workflow/sorc</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the build script <code class="docutils literal notranslate"><span class="pre">app_build.sh</span></code>:</p></li>
+</ol>
+<p>Note: Running and building the UFS Da Workflow options below will have different run styles based off the use of the JEDI-Bundle/GDAS and Workflow components and where ‘[APP]’ is <cite>S2SWA</cite>, <cite>S2SWAL</cite>, <cite>NG-GODAS</cite>, <cite>ATML</cite>, or <cite>ATM</cite>.</p>
+<ol class="arabic">
+<li><p>Option 1: Workflow components: YES, JEDI-bundle: NO</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./app_build.sh -a=[APP]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Option 2: Workflow components: YES, JEDI-bundle: YES</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./app_build.sh -a=[APP] --jedi=bundle</span>
+</pre></div>
+</div>
+</li>
+<li><p>Option 3: Workflow components: NO, JEDI-bundle: YES</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./app_build.sh -a=[APP] --jedi=bundle-only</span>
+</pre></div>
+</div>
+</li>
+<li><p>Option 4: Workflow components: YES, GDAS App: YES</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./app_build.sh -a=[APP] --jedi=gdas</span>
+</pre></div>
+</div>
+</li>
+<li><p>Option 5: Workflow components: NO, JEDI-bundle: YES</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./app_build.sh -a=[APP] --jedi=gdas-only</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="load-the-workflow-environment">
+<span id="load-env"></span><h2>Load the Workflow Environment<a class="headerlink" href="#load-the-workflow-environment" title="Link to this heading"></a></h2>
+<p>To load the workflow environment:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ..</span>
+<span class="go">module use modulefiles</span>
+<span class="go">module load wflow_[workflow_manager]_[machine]</span>
+</pre></div>
+</div>
+<p>where <cite>[workflow_manager]</cite> is <cite>ecflow</cite>, <cite>rocoto</cite>, or <cite>none</cite>, and <cite>[machine]</cite> is <cite>gaeac6</cite>, <cite>hercules</cite>, <cite>orion</cite>, <cite>ursa</cite>, or <cite>derecho</cite>.</p>
+</section>
+<section id="modify-the-workflow-configuration-yaml">
+<h2>Modify the Workflow Configuration YAML<a class="headerlink" href="#modify-the-workflow-configuration-yaml" title="Link to this heading"></a></h2>
+<p>Copy the experiment settings into <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ${BASEDIR}/ufs-da-workflow/parm</span>
+<span class="go">cp config_samples/config.[sample_case].yaml config.yaml</span>
+</pre></div>
+</div>
+<p>Users will need to configure the <code class="docutils literal notranslate"><span class="pre">account</span></code> variable in <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ACCOUNT:</span></code> A valid account name. Most NOAA <span class="xref std std-term">RDHPCS</span> systems require a valid account name; other systems may not (in which case, any value will do).</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>When regenerating an experiment from the same or similar <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file, if the <code class="docutils literal notranslate"><span class="pre">EXP_CASE_NAME</span></code> remains the same, the old experiment directory with that name will be renamed with the <code class="docutils literal notranslate"><span class="pre">*_old</span></code> suffix, and the new experiment directory will use <code class="docutils literal notranslate"><span class="pre">EXP_CASE_NAME</span></code>. However, the <code class="docutils literal notranslate"><span class="pre">envir</span></code> directory will <strong>NOT</strong> be regenerated unless the <code class="docutils literal notranslate"><span class="pre">envir</span></code> parameter is given a new name. If it keeps the same name, the previous <code class="docutils literal notranslate"><span class="pre">ptmp/&lt;envir&gt;</span></code> directory and everything in it will remain (rather than being renamed), and the experiment will continue from where it left off using the files from the previous directory. This can be helpful in certain cases but detrimental in others, so users need to make a conscious choice based on their use case.</p>
+</div>
+</section>
+<section id="set-up-and-launch-the-workflow">
+<span id="generate-wflow"></span><h2>Set Up and Launch the Workflow<a class="headerlink" href="#set-up-and-launch-the-workflow" title="Link to this heading"></a></h2>
+<p>Generate the experiment directory by running:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./setup_wflow_env.py</span>
+</pre></div>
+</div>
+<p>Note: Two options for running the workflow based off the desired WORKFLOW_MANAGER (‘ecflow’ or ‘rocoto’.)</p>
+<ol class="arabic simple">
+<li><p>Option 1: WORKFLOW_MANAGER: ecflow</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../../exp_case/ecf_server</span>
+<span class="go">./start_server.sh</span>
+<span class="go">cd ../[EXP_CASE_NAME]/ecf</span>
+<span class="go">./begin_suite.sh</span>
+<span class="go">ecflow_ui &amp;</span>
+</pre></div>
+</div>
+<p>Where <cite>[EXP_CASE_NAME]</cite> is specified in the configuration file <cite>config.yaml</cite>.</p>
+<ol class="arabic simple">
+<li><p>Option 2: WORKFLOW_MANAGER: rocoto</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cd ../../exp_case/[EXP_CASE_NAME]</span>
+<span class="go">./automate_launch_script.py -i [time interval in seconds]</span>
+</pre></div>
+</div>
+<p>Where the default value of <cite>[time interval in seconds]</cite> is 30. This means that the launch script <cite>launch_rocoto_wflow.sh</cite> is submitted every 30 seconds.</p>
+</section>
+<section id="check-the-result-and-log-files">
+<h2>Check the result and log files<a class="headerlink" href="#check-the-result-and-log-files" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><cite>com_dir</cite>: symlink to the directory containing the result files</p></li>
+<li><p><cite>log_dir</cite>: symlink to the directory containing the log files</p></li>
+<li><p><cite>tmp_dir</cite>: symlink to the directory containing the working directories</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
