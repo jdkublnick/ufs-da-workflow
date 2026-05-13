@@ -6,8 +6,7 @@ Quick Start Guide
 
 This chapter provides quick-start instructions for building and running the
 Unified Forecast System (UFS) DA Workflow. It summarizes the application
-configurations and the common end-to-end run paths described in the DA Workflow
-technical reference.
+configurations and the common end-to-end run paths you will encounter in ufs-da-workflow. 
 
 .. attention::
 
@@ -28,7 +27,7 @@ See :ref:`component-configuration` for the full component tables.
    :header-rows: 1
    :widths: 15 35 50
 
-   * - ``APP``
+   * - APP
      - Coupling
      - Description
    * - ``S2SWA``
