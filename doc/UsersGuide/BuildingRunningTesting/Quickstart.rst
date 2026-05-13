@@ -57,10 +57,7 @@ forecast tasks, such as the UFS Weather Model.
 
 #. Retrieve the ``develop`` branch of the UFS DA Workflow:
 
-   .. code-block:: console
-
-      git clone --recursive https://github.com/ufs-community/ufs-da-workflow
-      cd ufs-da-workflow/sorc
+   .. include:: ../../doc-snippets/clone-ufsda-sorc.rst
 
    The path to the ``ufs-da-workflow`` directory is referred to as
    ``${HOMEufsda}`` in the commands below.
@@ -90,17 +87,11 @@ forecast tasks, such as the UFS Weather Model.
    Replace ``[APP]`` with ``S2SWA``, ``S2SWAL``, ``NG-GODAS``, ``ATML``, or
    ``ATM``.
 
-   .. note::
-
-      GDAS App is not available on Derecho.
+   .. include:: ../../doc-snippets/gdas-derecho-note.rst
 
 #. Load the modules and Python environment for the workflow:
 
-   .. code-block:: console
-
-      cd ${HOMEufsda}
-      module use modulefiles
-      module load wflow_[workflow_manager]_[machine]
+   .. include:: ../../doc-snippets/load-workflow-env.rst
 
    Replace ``[workflow_manager]`` with ``ecflow`` or ``rocoto``. Replace
    ``[machine]`` with ``gaeac6``, ``hercules``, ``orion``, ``ursa``, or
@@ -121,9 +112,7 @@ forecast tasks, such as the UFS Weather Model.
 
 #. Set up the case-specific experiment directory:
 
-   .. code-block:: console
-
-      ./setup_wflow_env.py
+   .. include:: ../../doc-snippets/setup-wflow-env.rst
 
    To specify the platform explicitly:
 
@@ -135,22 +124,13 @@ forecast tasks, such as the UFS Weather Model.
 
    For ``WORKFLOW_MANAGER: ecflow``:
 
-   .. code-block:: console
-
-      cd ../../exp_case/ecf_server
-      ./start_server.sh
-      cd ../../exp_case/[EXP_CASE_NAME]/ecf
-      ./begin_suite.sh
-      ecflow_ui &
+   .. include:: ../../doc-snippets/ecflow-launch.rst
 
    ``[EXP_CASE_NAME]`` is set in ``config.yaml``. If the ecFlow server is
    already running, do not start it again. After all suites are complete, stop
    the server:
 
-   .. code-block:: console
-
-      cd ../../exp_case/ecf_server
-      ./stop_server.sh
+   .. include:: ../../doc-snippets/ecflow-stop.rst
 
    For ``WORKFLOW_MANAGER: rocoto``:
 
@@ -190,10 +170,7 @@ Use this path for a JEDI analysis workflow without the UFS Weather Model.
 
 #. Retrieve the code and enter ``sorc``:
 
-   .. code-block:: console
-
-      git clone --recursive https://github.com/ufs-community/ufs-da-workflow
-      cd ufs-da-workflow/sorc
+   .. include:: ../../doc-snippets/clone-ufsda-sorc.rst
 
 #. Build DA utilities with either JEDI-bundle or GDAS App:
 
@@ -202,17 +179,11 @@ Use this path for a JEDI analysis workflow without the UFS Weather Model.
       ./app_build.sh --da-utils-only --jedi=bundle
       ./app_build.sh --da-utils-only --jedi=gdas
 
-   .. note::
-
-      GDAS App is not available on Derecho.
+   .. include:: ../../doc-snippets/gdas-derecho-note.rst
 
 #. Load the workflow environment:
 
-   .. code-block:: console
-
-      cd ${HOMEufsda}
-      module use modulefiles
-      module load wflow_[workflow_manager]_[machine]
+   .. include:: ../../doc-snippets/load-workflow-env.rst
 
 #. Copy and edit an analysis-only configuration:
 
@@ -224,26 +195,15 @@ Use this path for a JEDI analysis workflow without the UFS Weather Model.
 
 #. Set up and launch the experiment:
 
-   .. code-block:: console
-
-      ./setup_wflow_env.py
+   .. include:: ../../doc-snippets/setup-wflow-env.rst
 
    The PDF reference describes analysis-only launch with ecFlow:
 
-   .. code-block:: console
-
-      cd ../../exp_case/ecf_server
-      ./start_server.sh
-      cd ../../exp_case/[EXP_CASE_NAME]/ecf
-      ./begin_suite.sh
-      ecflow_ui &
+   .. include:: ../../doc-snippets/ecflow-launch.rst
 
    Stop the ecFlow server after all relevant suites are complete:
 
-   .. code-block:: console
-
-      cd ../../exp_case/ecf_server
-      ./stop_server.sh
+   .. include:: ../../doc-snippets/ecflow-stop.rst
 
 .. _quickstart-forecast-only:
 
@@ -255,10 +215,7 @@ or GDAS App.
 
 #. Retrieve the code and enter ``sorc``:
 
-   .. code-block:: console
-
-      git clone --recursive https://github.com/ufs-community/ufs-da-workflow
-      cd ufs-da-workflow/sorc
+   .. include:: ../../doc-snippets/clone-ufsda-sorc.rst
 
 #. Build the workflow components:
 
@@ -268,11 +225,7 @@ or GDAS App.
 
 #. Load the workflow environment:
 
-   .. code-block:: console
-
-      cd ${HOMEufsda}
-      module use modulefiles
-      module load wflow_[workflow_manager]_[machine]
+   .. include:: ../../doc-snippets/load-workflow-env.rst
 
 #. Copy and edit a forecast-only configuration:
 
@@ -284,18 +237,10 @@ or GDAS App.
 
 #. Set up and launch the experiment with ecFlow:
 
-   .. code-block:: console
+   .. include:: ../../doc-snippets/setup-wflow-env.rst
 
-      ./setup_wflow_env.py
-      cd ../../exp_case/ecf_server
-      ./start_server.sh
-      cd ../../exp_case/[EXP_CASE_NAME]/ecf
-      ./begin_suite.sh
-      ecflow_ui &
+   .. include:: ../../doc-snippets/ecflow-launch.rst
 
    Stop the ecFlow server after all relevant suites are complete:
 
-   .. code-block:: console
-
-      cd ../../exp_case/ecf_server
-      ./stop_server.sh
+   .. include:: ../../doc-snippets/ecflow-stop.rst

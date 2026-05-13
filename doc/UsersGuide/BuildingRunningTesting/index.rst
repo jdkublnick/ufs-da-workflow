@@ -7,3 +7,4 @@ Building, Running, and Testing the UFS DA Workflow
    :maxdepth: 3
 
    Quickstart
+   BuildingTesting
