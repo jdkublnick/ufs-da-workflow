@@ -197,7 +197,7 @@ Use this path for a JEDI analysis workflow without the UFS Weather Model.
 
    .. include:: ../../doc-snippets/setup-wflow-env.rst
 
-   The PDF reference describes analysis-only launch with ecFlow:
+   Launch the analysis-only workflow with ecFlow:
 
    .. include:: ../../doc-snippets/ecflow-launch.rst
 

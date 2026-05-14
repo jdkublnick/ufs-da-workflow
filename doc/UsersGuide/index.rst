@@ -7,3 +7,5 @@ User's Guide
 
    BackgroundInfo/index
    BuildingRunningTesting/index
+   CustomizingTheWorkflow/index
+   Reference/index
