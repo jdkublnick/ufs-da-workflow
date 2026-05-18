@@ -5,7 +5,11 @@ UFS DA Workflow Documentation (|version|)
 =========================================
 
 .. toctree::
-   :maxdepth: 3
+   :numbered:
+   :maxdepth: 1
 
-   UsersGuide/index
+   UsersGuide/BackgroundInfo/index
+   UsersGuide/BuildingRunningTesting/index
+   UsersGuide/CustomizingTheWorkflow/index
+   UsersGuide/Reference/index
 

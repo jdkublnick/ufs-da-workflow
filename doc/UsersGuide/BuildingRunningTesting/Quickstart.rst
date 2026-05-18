@@ -52,15 +52,14 @@ See :ref:`component-configuration` for the full component tables.
 Analysis and Forecast Workflow
 ==============================
 
-Use this path when the workflow includes both analysis tasks, such as JEDI, and
-forecast tasks, such as the UFS Weather Model.
-
 #. Retrieve the ``develop`` branch of the UFS DA Workflow:
 
    .. include:: ../../doc-snippets/clone-ufsda-sorc.rst
 
-   The path to the ``ufs-da-workflow`` directory is referred to as
-   ``${HOMEufsda}`` in the commands below.
+   .. note::
+
+      The path to the ``ufs-da-workflow`` directory is referred to as
+      ``${HOMEufsda}`` in the commands below.
 
 #. Build the executables. Select one of the following options:
 
@@ -134,24 +133,18 @@ forecast tasks, such as the UFS Weather Model.
 
    For ``WORKFLOW_MANAGER: rocoto``:
 
-   .. code-block:: console
+   .. include:: ../../doc-snippets/rocoto-expdir.rst
 
-      cd ../../exp_case/[EXP_CASE_NAME]
-      ./automate_launch_script.py
+   .. include:: ../../doc-snippets/rocoto-auto-launch.rst
 
-   The automation script runs ``launch_rocoto_wflow.sh`` every 30 seconds by
-   default. To use a 60-second interval:
+   The automation script runs ``launch_rocoto_wflow.sh`` every 10 seconds by
+   default. To use a 30-second interval:
 
-   .. code-block:: console
-
-      ./automate_launch_script.py -i 60
+   .. include:: ../../doc-snippets/rocoto-auto-interval.rst
 
    To launch Rocoto manually instead:
 
-   .. code-block:: console
-
-      ./launch_rocoto_wflow.sh
-      vim log.rocoto_launch
+   .. include:: ../../doc-snippets/rocoto-helper-launch.rst
 
    Submit the manual launch script sequentially until all tasks are complete.
 
