@@ -63,6 +63,8 @@ created by the build process.
 The workflow commonly sits beside generated or optional directories such as
 ``exp_case``, ``ptmp``, ``jedi``, and ``GDASApp``.
 
+.. _build-workflow-components:
+
 Build Workflow Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -335,7 +337,7 @@ manually.
       file godas_sst_bgerr.nc
 
    If this reports ``ASCII`` instead of a NetCDF file, Git LFS was not active
-   when the data were retrieved.
+   when the data was retrieved.
 
 Manual Installation of GDAS App
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -448,6 +450,8 @@ C-test of JEDI-bundle
       # Or, on PBS systems:
       qstat -u [user_id]
       qdel [JOBID]
+
+.. _ufs-weather-model-regression-tests:
 
 UFS Weather Model Regression Tests
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

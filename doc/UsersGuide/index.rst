@@ -1,5 +1,7 @@
 :orphan:
 
+.. _users-guide:
+
 User's Guide
 ============
 

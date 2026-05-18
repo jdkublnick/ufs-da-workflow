@@ -1,3 +1,5 @@
+.. _rocoto:
+
 Rocoto Introductory Information
 ===============================
 
@@ -7,6 +9,8 @@ case directory is set up to run workflow tasks with the Rocoto workflow manager.
 
 In the examples below, ``${HOMEufsda}`` refers to the full path of the cloned
 ``ufs-da-workflow`` repository.
+
+.. _rocoto-select:
 
 Select Rocoto
 -------------
@@ -31,6 +35,8 @@ In ``config.yaml``, set:
 
 Based on the ``WORKFLOW_MANAGER`` parameter in the configuration file, a Rocoto
 XML file is generated in the experimental directory.
+
+.. _rocoto-automated-launch:
 
 Automated Launch
 ----------------
@@ -67,6 +73,8 @@ The script prints status information to the terminal, for example:
 Press ``Ctrl+C`` to stop the automation loop. To resume the loop, run
 ``./automate_launch_script.py`` again from the experiment directory.
 
+.. _rocoto-manual-helper-launch:
+
 Manual Launch With the Helper Script
 ------------------------------------
 
@@ -80,6 +88,8 @@ Run ``launch_rocoto_wflow.sh`` sequentially until all workflow tasks complete.
 The script calls ``rocotorun``, checks ``rocotostat`` output, writes
 ``log.rocoto_launch``, and reports whether the workflow is still in progress,
 has succeeded, or has failed.
+
+.. _rocoto-manual-commands:
 
 Manual Launch With Rocoto Commands
 ----------------------------------
@@ -119,6 +129,8 @@ Check task status:
 
    rocotostat -w land_analysis.xml -d land_analysis.db -v 10
 
+.. _rocoto-restart-dead-task:
+
 Restart a DEAD Task
 -------------------
 
@@ -149,6 +161,8 @@ Submit the rewound task again:
 .. code-block:: console
 
    rocotoboot -w land_analysis.xml -d land_analysis.db -c 200001030000 -t forecast
+
+.. _rocoto-command-flags:
 
 Useful Rocoto Command Flags
 ---------------------------
