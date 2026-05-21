@@ -8,3 +8,4 @@ Background Information
 
    Introduction
    ComponentConfiguration
+   DirectoryStructure
