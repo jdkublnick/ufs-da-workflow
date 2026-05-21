@@ -3,11 +3,11 @@
 Directory Structure
 ===================
 
-The UFS DA Workflow follows the vertical directory structure and environment
-variable conventions used by the NCEP Central Operations (NCO) WCOSS
-Implementation Standards. The workflow keeps those conventions while allowing
-large working and output files to reside under a configurable ``PTMP`` location
-on NOAA HPC systems.
+The :term:`UFS` DA Workflow follows the vertical directory structure and
+environment variable conventions used by :term:`NCEP` Central Operations
+(:term:`NCO`) :term:`WCOSS` Implementation Standards. The workflow keeps those
+conventions while allowing large working and output files to reside under a
+configurable ``PTMP`` location on NOAA :term:`HPC` systems.
 
 .. _nco-standard-variables:
 
@@ -15,9 +15,9 @@ NCO Standard Variables
 ----------------------
 
 The land-DA workflow uses the following NCO-style variables for its directory
-layout and job environment. Variables set by the job card provide the
-experiment-wide context; variables set by the J-job layer are derived for each
-workflow task.
+layout and job environment. Variables set by the :term:`job card` provide the
+experiment-wide context; variables set by the :term:`J-job <J-jobs>` layer are
+derived for each workflow task.
 
 .. list-table:: Standard NCO environment variables
    :header-rows: 1
@@ -167,8 +167,9 @@ maintaining a separate J-job script for every task.
 
 Each task job card is created in the experiment case directory when the setup
 script builds the case. The job card sources the centralized J-job environment
-setup and then calls the task's ex-script in ``${HOMEufsda}/scripts``. Utility
-Python and shell scripts called by the ex-scripts are stored in
+setup and then calls the task's :term:`ex-script <ex-scripts>` in
+``${HOMEufsda}/scripts``. Utility Python and shell scripts called by the
+ex-scripts are stored in
 ``${HOMEufsda}/ush``.
 
 .. _workflow-vertical-directory-structure:
@@ -177,7 +178,7 @@ Workflow Vertical Directory Structure
 -------------------------------------
 
 The working and output directory tree expands from ``PTMP``, which is defined
-in the Rocoto YAML configuration file under ``${HOMEufsda}/parm``. This keeps
+in the :term:`Rocoto` YAML configuration file under ``${HOMEufsda}/parm``. This keeps
 large temporary and output files in the appropriate HPC file system while
 preserving the NCO-style layout.
 
@@ -259,7 +260,7 @@ directory structure:
 Static Data Directory
 ---------------------
 
-Static data, or FIX files, are too large to store directly in the GitHub
+Static data, or :term:`FIX` files, are too large to store directly in the GitHub
 repository. Instead, these files are kept in centralized locations on supported
 HPC systems. During installation, ``sorc/app_build.sh`` creates symbolic links
 from those centralized locations into the workflow ``fix`` directory.
