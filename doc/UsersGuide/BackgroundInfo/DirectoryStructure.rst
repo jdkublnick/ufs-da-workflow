@@ -154,13 +154,8 @@ derived for each workflow task.
 Workflow Layer Structure
 ------------------------
 
-The UFS DA Workflow follows the NCO job-layer pattern:
-
-.. code-block:: text
-
-   job card -> J-job -> ex-script -> ush utility scripts
-
-The J-job layer sets task directories and common environment variables. Because
+The UFS DA Workflow follows the NCO job-layer pattern. The J-job layer sets
+task directories and common environment variables. Because
 most of these settings are shared across workflow tasks, the UFS DA Workflow
 centralizes that setup in ``${HOMEufsda}/parm/jjob_env_setup.sh`` instead of
 maintaining a separate J-job script for every task.
@@ -172,51 +167,102 @@ setup and then calls the task's :term:`ex-script <ex-scripts>` in
 ex-scripts are stored in
 ``${HOMEufsda}/ush``.
 
+.. figure:: ../../_static/ufsDAworkflowstructure.png
+   :alt: Structure of the UFS DA Workflow
+   :align: center
+
+   Structure of the UFS DA Workflow
+
 .. _workflow-vertical-directory-structure:
 
 Workflow Vertical Directory Structure
 -------------------------------------
 
-The working and output directory tree expands from ``PTMP``, which is defined
-in the :term:`Rocoto` YAML configuration file under ``${HOMEufsda}/parm``. This keeps
-large temporary and output files in the appropriate HPC file system while
-preserving the NCO-style layout.
+The ``ufs-da-workflow`` repository uses the following directory structure.
 
-.. code-block:: text
+.. code-block:: console
 
-   {EXP_BASEDIR}
-      ufs-da-workflow ({HOMEufsda})
-         doc
-         ecf
-         exec ({EXECufsda})
-         fix ({FIXufsda})
-         modulefiles
-         parm ({PARMufsda})
-         scripts ({SCRIPTSufsda})
-         sorc
-         ush ({USHufsda})
-         versions
-      {PTMP}
-         {envir}
-            com ({COMROOT})
-               {NET}
-                  {model_ver}
-                     {RUN.PDY} ({COMINOUT})
-                        hofx
-                        obs
-                        plot
-               output
-                  logs
-            tmp ({DATAROOT})
-               {jobid} ({DATA})
-               DATA_SHARE
-      exp_case
-         {EXP_CASE_NAME}
-      jedi or GDASApp
-         build
-            bin ({JEDI_BIN_PATH})
-            lib
-               python3.XX ({JEDI_IODACONV_PATH})
+   ufs-da-workflow
+   ├── doc
+   │     ├── doc-snippets
+   │     ├── UsersGuide
+   │     ├── _static
+   │     ├── conf.py
+   │     ├── index.rst
+   │     ├── Makefile
+   │     ├── make.bat
+   │     ├── README_git
+   │     ├── references.bib
+   │     ├── requirements.in
+   │     └── requirements.txt
+   ├── ecf
+   │     ├── defs
+   │     ├── include
+   │     ├── template.begin_suite.sh
+   │     ├── template.control_suite.sh
+   │     ├── template.start_server.sh
+   │     └── stop_server.sh
+   ├── fix
+   ├── modulefiles
+   │     ├── tasks
+   │     │     ├── common
+   │     │     ├── derecho
+   │     │     ├── gaeac6
+   │     │     ├── hercules
+   │     │     ├── orion
+   │     │     └── ursa
+   │     ├── ufs_common.lua
+   │     ├── ufsda_<platform>.intel.lua
+   │     └── wflow_<workflow_manager>_<platform>.lua
+   ├── parm
+   │     ├── config_default
+   │     ├── config_samples
+   │     ├── jedi
+   │     │     ├── fieldmetadata
+   │     │     ├── fv3
+   │     │     └── soca
+   │     ├── templates
+   │     │     ├── gocart
+   │     │     └── task_env
+   │     ├── automate_launch_script.py
+   │     ├── detect_platform.sh
+   │     ├── jcard_env_setup.sh
+   │     ├── jjob_env_setup.sh
+   │     └── setup_wflow_env.py
+   ├── scripts
+   │     ├── exufsda_analysis.sh
+   │     ├── exufsda_fcst_ic.sh
+   │     ├── exufsda_forecast.sh
+   │     ├── exufsda_plot_stats.sh
+   │     └── exufsda_prep_data.sh
+   ├── sorc
+   │     ├── CMakeLists.txt
+   │     ├── app_build.sh
+   │     ├── apply_incr.fd
+   │     ├── calcfIMS.fd
+   │     ├── jcb-algorithms
+   │     ├── jcb-gdas
+   │     ├── jedi-bundle
+   │     ├── tile2tile_converter.fd
+   │     ├── ufs_model.fd
+   │     ├── UFS_UTILS.fd
+   │     └── UFS_UTILS_nofrac.fd
+   ├── ush
+   │     ├── bkg_var_replace.py
+   │     ├── compare.py
+   │     ├── compare_nc_vars.py
+   │     ├── fill_jinja_template.py
+   │     ├── jcb_setup.py
+   │     ├── letkf_create_ens.py
+   │     ├── plot_*.py
+   │     └── *_ioda*.py
+   ├── versions
+   │     └── run.ver_<platform>
+   ├── .gitignore
+   ├── .gitmodules
+   ├── .readthedocs.yaml
+   ├── LICENSE
+   └── README.md
 
 On WCOSS, operational products must set ``OPSROOT`` to
 ``/lfs/{FS}/ops/{envir}``. If ``PTMP`` is set to ``/lfs/{FS}/ops``, the UFS DA
@@ -229,31 +275,31 @@ holds intermediate files that should not be stored in the ``COM`` directory.
 For comparison, the NCO implementation standards use the following vertical
 directory structure:
 
-.. code-block:: text
+.. code-block:: console
 
    [envir] ([OPSROOT])
-      com ([COMROOT])
-         [NET]
-            [model_ver]
-               [RUN.PDY] ([COMIN]/[COMOUT])
-         output
-            logs
-      dcom ([DCOMROOT])
-      tmp ([DATAROOT])
-         [jobid] ([DATA])
-      packages ([PACKAGEROOT])
-         model.vX.Y.Z ([HOMEmodel])
-            doc
-            ecf
-            exec ([EXECmodel])
-            fix
-            jobs
-            modulefiles
-            parm ([PARMmodel])
-            scripts
-            sorc
-            ush ([USHmodel])
-            versions
+   ├── com ([COMROOT])
+   │     ├── [NET]
+   │     │     └── [model_ver]
+   │     │           └── [RUN.PDY] ([COMIN]/[COMOUT])
+   │     └── output
+   │           └── logs
+   ├── dcom ([DCOMROOT])
+   ├── tmp ([DATAROOT])
+   │     └── [jobid] ([DATA])
+   └── packages ([PACKAGEROOT])
+         └── model.vX.Y.Z ([HOMEmodel])
+               ├── doc
+               ├── ecf
+               ├── exec ([EXECmodel])
+               ├── fix
+               ├── jobs
+               ├── modulefiles
+               ├── parm ([PARMmodel])
+               ├── scripts
+               ├── sorc
+               ├── ush ([USHmodel])
+               └── versions
 
 .. _fix-directory-structure:
 
