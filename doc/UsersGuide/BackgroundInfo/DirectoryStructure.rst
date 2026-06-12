@@ -167,7 +167,7 @@ setup and then calls the task's :term:`ex-script <ex-scripts>` in
 ex-scripts are stored in
 ``${HOMEufsda}/ush``.
 
-.. figure:: https://github.com/ufs-community/ufs-da-workflow/wiki/images/ufsDAworkflowstructure.png
+.. figure:: https://raw.githubusercontent.com/wiki/ufs-community/ufs-da-workflow/UserGuideImages/ufsDAworkflowstructure.png
    :alt: Structure of the UFS DA Workflow
    :align: center
 
