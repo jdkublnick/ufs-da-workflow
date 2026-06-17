@@ -594,7 +594,7 @@ global-workflow cases.
 
       export KEEPDATA="YES"
 
-#. Load Rocoto if needed, then run and monitor the workflow:
+#. Load Rocoto if needed, then run and monitor the workflow using ``rocotorun`` and ``rocotostat`` respectively:
 
    .. code-block:: console
 
