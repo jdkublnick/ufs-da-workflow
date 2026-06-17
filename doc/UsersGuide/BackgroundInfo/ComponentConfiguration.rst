@@ -1,6 +1,6 @@
 .. _component-configuration:
 
-Componenet Configuration
+Component Configuration
 ========================
 
 The UFS DA Workflow supports several forecast model application configurations.
