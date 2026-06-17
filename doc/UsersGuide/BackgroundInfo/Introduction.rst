@@ -29,7 +29,7 @@ prepare data, generate forecast backgrounds, run JEDI-based analyses, and cycle
 updated model states through subsequent forecasts.
 
 The workflow is designed to support data assimilation across several UFS
-Weather Model applications. These applications range from an atmosphere-only
+applications. These applications range from an atmosphere-only
 configuration to coupled Earth system configurations that include ocean, sea
 ice, wave, aerosol/chemistry, and land components. Supported application
 configurations include:

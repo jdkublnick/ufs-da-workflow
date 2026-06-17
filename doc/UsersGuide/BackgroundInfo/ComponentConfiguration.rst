@@ -1,6 +1,6 @@
 .. _component-configuration:
 
-Componenet Configuration
+Component Configuration
 ========================
 
 The UFS DA Workflow supports several forecast model application configurations.
@@ -51,7 +51,7 @@ Coupling: ATM/OCN/ICE/WAV/CHM (APP=S2SWA)
    * - WW3
      - ON
      - Wave model (WaveWatch III)
-   * - STOCK_PHYS
+   * - STOCH_PHYS
      - ON
      - Physics component of atmospheric model
    * - CDEPS
@@ -111,7 +111,7 @@ Coupling: ATM/OCN/ICE/WAV/CHM/LND (APP=S2SWAL)
    * - WW3
      - ON
      - Wave model (WaveWatch III)
-   * - STOCK_PHYS
+   * - STOCH_PHYS
      - ON
      - Physics component of atmospheric model
    * - CDEPS
@@ -172,7 +172,7 @@ Coupling: DATM/OCN/ICE (APP=NG-GODAS)
    * - WW3
      - OFF
      - Wave model (WaveWatch III)
-   * - STOCK_PHYS
+   * - STOCH_PHYS
      - ON
      - Physics component of atmospheric model
    * - CDEPS
@@ -232,7 +232,7 @@ Coupling: ATM/LND (APP=ATML)
    * - WW3
      - OFF
      - Wave model (WaveWatch III)
-   * - STOCK_PHYS
+   * - STOCH_PHYS
      - ON
      - Physics component of atmospheric model
    * - CDEPS
@@ -292,7 +292,7 @@ Non-coupling: ATM (APP=ATM)
    * - WW3
      - OFF
      - Wave model (WaveWatch III)
-   * - STOCK_PHYS
+   * - STOCH_PHYS
      - ON
      - Physics component of atmospheric model
    * - CDEPS
