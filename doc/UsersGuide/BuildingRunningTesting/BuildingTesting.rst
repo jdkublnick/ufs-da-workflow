@@ -444,6 +444,7 @@ C-test of JEDI-bundle
 
    .. code-block:: console
 
+      # On Slurm systems (e.g, Ursa, Hercules, Orion, Gaea-C6):
       squeue -u [user_id]
       scancel [JOBID]
 
