@@ -457,7 +457,7 @@ C-test of JEDI-bundle
 UFS Weather Model Regression Tests
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Create a custom regression-test configuration:
+#. Create a custom regression test configuration:
 
    .. code-block:: console
 
