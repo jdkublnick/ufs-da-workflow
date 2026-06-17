@@ -111,7 +111,7 @@ Coupling: ATM/OCN/ICE/WAV/CHM/LND (APP=``S2SWAL``)
    * - WW3
      - ON
      - Wave model (WaveWatch III)
-   * - STOCK_PHYS
+   * - STOCH_PHYS
      - ON
      - Physics component of atmospheric model
    * - CDEPS
