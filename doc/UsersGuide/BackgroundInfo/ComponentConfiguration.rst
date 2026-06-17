@@ -8,7 +8,7 @@ Each application enables a different set of UFS Weather Model components.
 
 .. _component-configuration-s2swa:
 
-Coupling: ATM/OCN/ICE/WAV/CHM (APP=``S2SWA``)
+Coupling: ATM/OCN/ICE/WAV/CHM (APP=S2SWA)
 ----------------------------------------------
 
 * Coupling option used for GFS and GEFS. GOCART is excluded in the GFS
@@ -35,7 +35,7 @@ Coupling: ATM/OCN/ICE/WAV/CHM (APP=``S2SWA``)
      - Air quality model (CMAQ)
    * - GOCART
      - ON
-     - Global Ozone Chemistry Aerosol Radiation and Transport
+     - NASA Goddard Chemistry Aerosol Radiation and Transport model
    * - MOM6
      - ON
      - Ocean model developed by NOAA GFDL
@@ -69,7 +69,7 @@ Coupling: ATM/OCN/ICE/WAV/CHM (APP=``S2SWA``)
 
 .. _component-configuration-s2swal:
 
-Coupling: ATM/OCN/ICE/WAV/CHM/LND (APP=``S2SWAL``)
+Coupling: ATM/OCN/ICE/WAV/CHM/LND (APP=S2SWAL)
 --------------------------------------------------
 
 * Fully coupled configuration.
@@ -95,7 +95,7 @@ Coupling: ATM/OCN/ICE/WAV/CHM/LND (APP=``S2SWAL``)
      - Air quality model (CMAQ)
    * - GOCART
      - ON
-     - Global Ozone Chemistry Aerosol Radiation and Transport
+     - NASA Goddard Chemistry Aerosol Radiation and Transport model
    * - MOM6
      - ON
      - Ocean model developed by NOAA GFDL
@@ -129,7 +129,7 @@ Coupling: ATM/OCN/ICE/WAV/CHM/LND (APP=``S2SWAL``)
 
 .. _component-configuration-ng-godas:
 
-Coupling: DATM/OCN/ICE (APP=``NG-GODAS``)
+Coupling: DATM/OCN/ICE (APP=NG-GODAS)
 -----------------------------------------
 
 * Coupling option used for NOAA/CPC global modeling.
@@ -156,7 +156,7 @@ Coupling: DATM/OCN/ICE (APP=``NG-GODAS``)
      - Air quality model (CMAQ)
    * - GOCART
      - OFF
-     - Global Ozone Chemistry Aerosol Radiation and Transport
+     - NASA Goddard Chemistry Aerosol Radiation and Transport model
    * - MOM6
      - ON
      - Ocean model developed by NOAA GFDL
@@ -190,7 +190,7 @@ Coupling: DATM/OCN/ICE (APP=``NG-GODAS``)
 
 .. _component-configuration-atml:
 
-Coupling: ATM/LND (APP=``ATML``)
+Coupling: ATM/LND (APP=ATML)
 --------------------------------
 
 * Coupling option to support the land-DA working group using Noah-MP.
@@ -216,7 +216,7 @@ Coupling: ATM/LND (APP=``ATML``)
      - Air quality model (CMAQ)
    * - GOCART
      - OFF
-     - Global Ozone Chemistry Aerosol Radiation and Transport
+     - NASA Goddard Chemistry Aerosol Radiation and Transport model
    * - MOM6
      - OFF
      - Ocean model developed by NOAA GFDL
@@ -250,7 +250,7 @@ Coupling: ATM/LND (APP=``ATML``)
 
 .. _component-configuration-atm:
 
-Non-coupling: ATM (APP=``ATM``)
+Non-coupling: ATM (APP=ATM)
 -------------------------------
 
 * Atmospheric model (FV3+CCPP) stand-alone.
@@ -276,7 +276,7 @@ Non-coupling: ATM (APP=``ATM``)
      - Air quality model (CMAQ)
    * - GOCART
      - OFF
-     - Global Ozone Chemistry Aerosol Radiation and Transport
+     - NASA Goddard Chemistry Aerosol Radiation and Transport model
    * - MOM6
      - OFF
      - Ocean model developed by NOAA GFDL

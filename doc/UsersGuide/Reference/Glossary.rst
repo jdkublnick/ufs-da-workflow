@@ -153,7 +153,7 @@ Glossary
 
    ex-scripts
       Scripting layer, contained in ``ufs-da-workflow/scripts/``, that should be
-      called by a :term:`J-job <J-jobs>` for each workflow component to run a
+      called by the generated job card for each workflow component to run a
       specific task or sub-task in the workflow. The different scripting layers
       are described in detail in the :nco:`NCO Implementation Standards document <ImplementationStandards.v11.0.0.pdf>`.
 
@@ -221,7 +221,7 @@ Glossary
    job cards
       Batch-submission scripts generated for workflow tasks. A job card sets
       task-level scheduler options and environment variables before the
-      workflow enters the J-job and ex-script layers.
+      workflow enters the shared setup-script and ex-script layers.
 
    IMS
       The `Interactive Multisensor Snow and Ice Mapping System <https://usicecenter.gov/Products/ImsHome>`_
@@ -232,13 +232,6 @@ Glossary
       (:jedi:`IODA <inside/jedi-components/ioda/index.html>`) provides
       observation formatting and processing tools for data assimilation
       applications.
-
-   J-jobs
-      Scripts, contained in ``ufs-da-workflow/jobs/``, that should be directly
-      called for each workflow component, either on the command line or by the
-      workflow manager, to run a specific task in the workflow. The different
-      scripting layers are described in detail in the
-      :nco:`NCO Implementation Standards document <ImplementationStandards.v11.0.0.pdf>`.
 
    JCB
    JEDI Configuration Builder

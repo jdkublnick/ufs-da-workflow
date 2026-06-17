@@ -22,7 +22,8 @@ UFS DA Workflow
 
 The UFS Data Assimilation (DA) Workflow provides a configurable framework for
 running :term:`data assimilation` experiments with the :term:`UFS` Weather
-Model and the :term:`JCSDA` :term:`JEDI` system. It connects model forecasts,
+Model and the Joint Effort for Data assimilation Integration (:term:`JEDI`)
+system. It connects model forecasts,
 observations, analysis applications, and workflow management tools so users can
 prepare data, generate forecast backgrounds, run JEDI-based analyses, and cycle
 updated model states through subsequent forecasts.

@@ -14,158 +14,27 @@ configurable ``PTMP`` location on NOAA :term:`HPC` systems.
 NCO Standard Variables
 ----------------------
 
-The land-DA workflow uses the following NCO-style variables for its directory
-layout and job environment. Variables set by the :term:`job card` provide the
-experiment-wide context; variables set by the :term:`J-job <J-jobs>` layer are
-derived for each workflow task.
-
-.. list-table:: Standard NCO environment variables
-   :header-rows: 1
-   :widths: 20 60 20
-
-   * - Name
-     - Description
-     - Set by
-   * - ``COMROOT``
-     - ``com`` root directory for input and output data on the current system.
-     - Job card
-   * - ``DATAROOT``
-     - Directory containing job working directories, usually under
-       ``OPSROOT/tmp``.
-     - Job card
-   * - ``DBNROOT``
-     - Root directory for data-alerting utilities.
-     - Job card
-   * - ``DCOMROOT``
-     - ``dcom`` root directory.
-     - Job card
-   * - ``KEEPDATA``
-     - ``YES``/``NO`` switch controlling whether the working directory is kept
-       after a job completes successfully.
-     - Job card
-   * - ``MAILTO``
-     - Email recipients for job notifications.
-     - Job card
-   * - ``MAILCC``
-     - Email recipients to copy on job notifications.
-     - Job card
-   * - ``OPSROOT``
-     - Operations root directory, for example ``/lfs/$FS/ops/$envir``.
-     - Job card
-   * - ``PACKAGEROOT``
-     - Root installation directory for the application.
-     - Job card
-   * - ``SENDCOM``
-     - ``YES``/``NO`` switch controlling copies to ``COMOUT``.
-     - Job card
-   * - ``SENDECF``
-     - ``YES``/``NO`` switch controlling ``ecflow_client`` child commands.
-     - Job card
-   * - ``SENDDBN``
-     - ``YES``/``NO`` switch controlling whether products are sent off WCOSS2.
-     - Job card
-   * - ``SENDDBN_NTC``
-     - ``YES``/``NO`` switch controlling whether products with WMO headers are
-       sent off WCOSS2.
-     - Job card
-   * - ``SENDWEB``
-     - ``YES``/``NO`` switch controlling whether products are sent to a web
-       server, often NCORZDM.
-     - Job card
-   * - ``cyc``
-     - Cycle hour in GMT, formatted as ``HH``.
-     - Job card
-   * - ``envir``
-     - Runtime environment: usually ``test`` for initial testing, ``para`` for
-       parallel production testing, and ``prod`` for production.
-     - Job card
-   * - ``job``
-     - Unique job name.
-     - Job card
-   * - ``jobid``
-     - Unique job identifier.
-     - Job card
-   * - ``model_ver``
-     - Three-digit package version number.
-     - Job card
-   * - ``subcyc``
-     - Cycle minute in GMT, formatted as ``MM``.
-     - Job card
-   * - ``COMIN``
-     - ``com`` directory for the current model's input data.
-     - J-job
-   * - ``COMOUT``
-     - ``com`` directory for the current model's output data.
-     - J-job
-   * - ``COMIN[model]``
-     - ``com`` directory for incoming data from ``[model]``.
-     - J-job
-   * - ``COMOUT[model]``
-     - ``com`` directory for outgoing data from ``[model]``.
-     - J-job
-   * - ``DCOMIN``
-     - ``dcom`` directory for the current model's input data.
-     - J-job
-   * - ``DCOMIN[datatype]``
-     - ``dcom`` directory for incoming data from ``[datatype]``.
-     - J-job
-   * - ``DATA``
-     - Job working directory, usually ``DATAROOT/jobid``.
-     - J-job
-   * - ``EXEC[model]``
-     - Model executable directory, usually ``HOME[model]/exec``.
-     - J-job
-   * - ``FIX[model]``
-     - Model static-data directory, usually ``HOME[model]/fix``.
-     - J-job
-   * - ``HOME[model]``
-     - Application home directory.
-     - J-job
-   * - ``NET``
-     - Model name, used as the first level of the ``com`` directory structure.
-     - J-job
-   * - ``PARM[model]``
-     - Model parameter directory, usually ``HOME[model]/parm``.
-     - J-job
-   * - ``PDY``
-     - Cycle date in ``YYYYMMDD`` format.
-     - J-job
-   * - ``PDYm#``
-     - Previous dates in ``YYYYMMDD`` format; for example, ``PDYm1`` is the
-       previous day.
-     - J-job
-   * - ``PDYp#``
-     - Future dates in ``YYYYMMDD`` format; for example, ``PDYp1`` is the next
-       day.
-     - J-job
-   * - ``RUN``
-     - Model run name, used as the third level of the ``com`` directory
-       structure.
-     - J-job
-   * - ``USH[model]``
-     - Model utility-script directory, usually ``HOME[model]/ush``.
-     - J-job
-   * - ``cycle``
-     - Cycle time in GMT, formatted as ``tHHz`` or ``tHHMMz``.
-     - J-job
+The UFS DA Workflow follows the NCO-style environment variable conventions
+described in the
+:nco:`NCO Implementation Standards document <ImplementationStandards.v11.0.0.pdf>`.
+Within this repository, ``parm/jcard_env_setup.sh`` sets defaults for the
+generated :term:`job cards <job card>`, and ``parm/jjob_env_setup.sh`` derives
+the task-specific paths and cycle variables used by the workflow scripts.
 
 .. _workflow-layer-structure:
 
 Workflow Layer Structure
 ------------------------
 
-The UFS DA Workflow follows the NCO job-layer pattern. The J-job layer sets
-task directories and common environment variables. Because
-most of these settings are shared across workflow tasks, the UFS DA Workflow
-centralizes that setup in ``${HOMEufsda}/parm/jjob_env_setup.sh`` instead of
-maintaining a separate J-job script for every task.
+The UFS DA Workflow follows the NCO job-layer pattern without maintaining a
+separate task wrapper script for every task. Instead, generated job cards source
+common setup scripts that set task directories and shared environment variables.
 
 Each task job card is created in the experiment case directory when the setup
-script builds the case. The job card sources the centralized J-job environment
-setup and then calls the task's :term:`ex-script <ex-scripts>` in
-``${HOMEufsda}/scripts``. Utility Python and shell scripts called by the
-ex-scripts are stored in
-``${HOMEufsda}/ush``.
+script builds the case. The job card sources ``parm/jcard_env_setup.sh`` and
+``parm/jjob_env_setup.sh`` and then calls the task's
+:term:`ex-script <ex-scripts>` in ``${HOMEufsda}/scripts``. Utility Python and
+shell scripts called by the ex-scripts are stored in ``${HOMEufsda}/ush``.
 
 .. figure:: https://raw.githubusercontent.com/wiki/ufs-community/ufs-da-workflow/UserGuideImages/ufsDAworkflowstructure.png
    :alt: Structure of the UFS DA Workflow

@@ -37,28 +37,28 @@ created by the build process.
    * - Directory or file
      - Description
    * - ``doc``
-     - Documentation source for the user's guide.
+     - Documentation source for the user's guide
    * - ``ecf``
-     - ecFlow scripts.
+     - ecFlow scripts
    * - ``fix``
-     - Fix fields, tables, and other static input data.
+     - Fix fields, tables, and other static input data
    * - ``modulefiles``
-     - Machine-specific module files used to build and run the workflow.
+     - Machine-specific module files used to build and run the workflow
    * - ``parm``
      - Parameter files, templates, default configuration files, and sample
-       configuration files.
+       configuration files
    * - ``scripts``
-     - Ex-scripts, or main workflow scripts.
+     - Ex-scripts, or main workflow scripts
    * - ``sorc``
-     - Build-related scripts and external components.
+     - Build-related scripts and external components
    * - ``ush``
-     - Utility scripts called from ex-scripts.
+     - Utility scripts called from ex-scripts
    * - ``versions``
-     - Module version control files.
+     - Module version control files
    * - ``exec``
-     - Workflow executables, created by the build process.
+     - Workflow executables, created by the build process
    * - ``lib64``
-     - Dynamic libraries, created by the build process.
+     - Dynamic libraries, created by the build process
 
 The workflow commonly sits beside generated or optional directories such as
 ``exp_case``, ``ptmp``, ``jedi``, and ``GDASApp``.
@@ -80,26 +80,9 @@ Replace ``[APP]`` with ``S2SWA``, ``S2SWAL``, ``NG-GODAS``, ``ATML``, or
 ``ATM``. If the application is not specified, the build script defaults to
 ``S2SWA``.
 
-The build script can auto-detect supported NOAA Tier-1 platforms. To specify
-the platform explicitly:
-
-.. code-block:: console
-
-   ./app_build.sh -p=[machine] -a=[APP]
-
-Replace ``[machine]`` with ``gaeac6``, ``hercules``, ``orion``, ``ursa``, or
-``derecho``.
-
-The build script normally builds executables in ``sorc/build`` and then moves
-them to ``${HOMEufsda}/exec``. To split those phases:
-
-.. code-block:: console
-
-   # Build only
-   ./app_build.sh -a=[APP] --build
-
-   # Move an existing build into the workflow installation
-   ./app_build.sh -a=[APP] --move
+The basic build creates the selected UFS Weather Model executable, UFS utilities,
+DA utility executables when applicable, and FIX links. It does not build JEDI;
+use an existing JEDI installation or one of the optional JEDI build modes below.
 
 When the build process completes, executables are installed in
 ``${HOMEufsda}/exec``. The UFS Weather Model executable is renamed with the
@@ -109,18 +92,6 @@ application suffix, for example ``ufs_model_s2swa``.
 
    ``apply_incr.exe`` and ``calcfIMS.exe`` are used for snow DA and are not
    installed for ``APP=NG-GODAS``.
-
-Create FIX Links
-^^^^^^^^^^^^^^^^
-
-To create symbolic links to FIX directories without building software:
-
-.. code-block:: console
-
-   cd ${HOMEufsda}/sorc
-   ./app_build.sh --fix-only
-
-Existing symbolic links in ``fix`` are removed and regenerated.
 
 Build Script Options
 ^^^^^^^^^^^^^^^^^^^^
@@ -136,41 +107,42 @@ The most common ``app_build.sh`` options are listed below. Run
      - Description
      - Example
    * - ``-h``, ``--help``
-     - Shows the help guide.
+     - Shows the help guide
      - ``./app_build.sh -h``
    * - ``-p``, ``--platform``
      - Specifies the platform. If omitted, ``parm/detect_platform.sh`` is used
-       to detect supported Tier-1 platforms.
+       to detect supported Tier-1 platforms
      - ``./app_build.sh -p=ursa``
    * - ``-c``, ``--compiler``
-     - Specifies the compiler.
+     - Specifies the compiler
      - ``./app_build.sh -c=intel``
    * - ``-a``, ``--app``
-     - Specifies the weather model application.
+     - Specifies the weather model application
      - ``./app_build.sh -a=S2SWA``
    * - ``--remove``
-     - Removes existing build products and updates submodules.
+     - Removes existing build products and updates submodules
      - ``./app_build.sh --remove``
    * - ``--clean``
-     - Runs ``make clean`` in the build directory.
+     - Runs ``make clean`` in the build directory
      - ``./app_build.sh --clean``
    * - ``--build``
      - Builds executables and libraries in ``sorc/build`` without moving them
-       to ``exec`` and ``lib64``.
+       to ``exec`` and ``lib64``
      - ``./app_build.sh --build``
    * - ``--move``
      - Moves pre-compiled executables and libraries from the build directory to
-       ``exec`` and ``lib64``.
+       ``exec`` and ``lib64``
      - ``./app_build.sh --move``
    * - ``--da-utils-only``
-     - Builds DA utilities only.
+     - Builds DA utilities only
      - ``./app_build.sh --da-utils-only``
    * - ``--fix-only``
-     - Creates symbolic links to static FIX files and exits.
+     - Creates or refreshes symbolic links to static FIX files without
+       rebuilding
      - ``./app_build.sh --fix-only``
    * - ``--jedi``
      - Selects the JEDI build option: ``off``, ``bundle``, ``gdas``,
-       ``bundle-only``, or ``gdas-only``.
+       ``bundle-only``, or ``gdas-only``
      - ``./app_build.sh --jedi=bundle``
 
 When ``sorc/build`` already exists, the script prompts for an interactive
@@ -183,11 +155,11 @@ choice:
    * - Option
      - Description
    * - ``R`` or ``r``
-     - Remove the existing build directory and continue.
+     - Remove the existing build directory and continue
    * - ``C`` or ``c``
-     - Continue building in the existing build directory.
+     - Continue building in the existing build directory
    * - ``Q`` or ``q``
-     - Quit the build process.
+     - Quit the build process
 
 Installed Executables
 ^^^^^^^^^^^^^^^^^^^^^
@@ -231,19 +203,22 @@ source components are included in the selected build.
 Build Optional DA Dependencies
 ------------------------------
 
+The basic ``./app_build.sh -a=[APP]`` command does not build JEDI. Use this
+section only for experiments that run JEDI-based DA and need ``app_build.sh`` to
+build the required JEDI executables. If you already have JEDI executables
+installed, skip to :ref:`use-separately-installed-jedi`.
+
 JEDI-bundle with ``app_build.sh``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The JEDI-bundle synced with the GDAS App can be built through
-``app_build.sh``:
+Build JEDI-bundle when ``JEDI_BUNDLE_GDAS`` is set to ``bundle`` and the
+experiment will use the default JEDI path, ``../jedi/build/bin``. The
+JEDI-bundle synced with the GDAS App can be built through ``app_build.sh``:
 
 .. code-block:: console
 
    # Workflow components and JEDI-bundle
    ./app_build.sh -a=[APP] --jedi=bundle
-
-   # DA utilities and JEDI-bundle
-   ./app_build.sh --da-utils-only --jedi=bundle
 
    # JEDI-bundle only
    ./app_build.sh --jedi=bundle-only
@@ -254,15 +229,14 @@ checkout and installs it in ``../jedi/build`` by default.
 GDAS App with ``app_build.sh``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The GDAS App can also be built through ``app_build.sh``:
+Build the GDAS App when ``JEDI_BUNDLE_GDAS`` is set to ``gdas`` and the
+experiment will use the default JEDI path, ``../GDASApp/build/bin``. The GDAS
+App can also be built through ``app_build.sh``:
 
 .. code-block:: console
 
    # Workflow components and GDAS App
    ./app_build.sh -a=[APP] --jedi=gdas
-
-   # DA utilities and GDAS App
-   ./app_build.sh --da-utils-only --jedi=gdas
 
    # GDAS App only
    ./app_build.sh --jedi=gdas-only
@@ -272,11 +246,20 @@ workflow checkout.
 
 .. include:: ../../doc-snippets/gdas-derecho-note.rst
 
+.. _use-separately-installed-jedi:
+
 Use Separately Installed JEDI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If you use separately installed JEDI executables, set the paths in
-``config.yaml``:
+If you use separately installed JEDI executables, set the paths in the workflow
+configuration file after creating it from a sample in the workflow checkout's
+``parm`` directory:
+
+.. note::
+
+   The ``parm/config_samples`` directory provides many configuration examples
+   that users can choose from, using names such as
+   ``config_samples/config.[APP].[case_name].yaml``.
 
 .. code-block:: yaml
 
@@ -286,8 +269,10 @@ If you use separately installed JEDI executables, set the paths in
 Manual Installation of JEDI-bundle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The automated build script is preferred, but the JEDI-bundle can also be built
-manually.
+Skip this section if JEDI-bundle is already built. The automated build script is
+preferred, but the JEDI-bundle can also be built manually. In the commands below,
+``${HOMEjedi}`` refers to the parent directory where JEDI-bundle is or will be
+installed; replace it with the actual path on your system.
 
 #. Create and enter a parent directory:
 
@@ -309,7 +294,9 @@ manually.
       cd jedi-bundle
       module purge
 
-   On Gaea-C6, use ``module reset`` instead of ``module purge``.
+   .. attention::
+
+      On Gaea-C6, use ``module reset`` instead of ``module purge``.
 
 #. Load the machine module and Git LFS:
 
@@ -318,6 +305,9 @@ manually.
       module use modulefiles/
       module load [machine].intel
       module load git-lfs
+
+   Replace ``[machine]`` with ``gaeac6``, ``hercules``, ``orion``, ``ursa``, or
+   ``derecho``.
 
 #. Configure and build:
 
@@ -342,6 +332,12 @@ manually.
 Manual Installation of GDAS App
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+.. note::
+
+   Skip this section if the GDAS App was already built with ``app_build.sh``.
+   The automated build script is preferred, but the GDAS App can also be built
+   manually.
+
 #. Move to the parent directory of the workflow checkout:
 
    .. code-block:: console
@@ -349,7 +345,9 @@ Manual Installation of GDAS App
       cd ${HOMEufsda}/..
 
    The workflow assumes by default that ``GDASApp`` is installed beside
-   ``ufs-da-workflow``. Users can override this path in ``config.yaml``.
+   ``ufs-da-workflow``. Users can override this assumption by adding the path
+   to ``GDASApp`` in ``config.yaml``, after creating ``config.yaml`` from a
+   sample such as ``config_samples/config.[APP].[case_name].yaml``.
 
 #. Clone GDAS App:
 
@@ -403,7 +401,12 @@ C-test of JEDI-bundle
       module use modulefiles/
       module load [machine].intel
 
-   On Gaea-C6, use ``module reset`` instead of ``module purge``.
+   Replace ``[machine]`` with ``gaeac6``, ``hercules``, ``orion``, ``ursa``, or
+   ``derecho``.
+
+   .. note::
+
+      On Gaea-C6, use ``module reset`` instead of ``module purge``.
 
 #. Move to the build directory and list available C-tests:
 
@@ -418,7 +421,9 @@ C-test of JEDI-bundle
 
       ctest -R test_soca
 
-   To run ``test_soca_3dvar`` alone, first run its prerequisite cases:
+   Use ``ctest -N`` to list available tests, and use ``ctest -N -V`` to inspect
+   test properties such as dependencies. To run ``test_soca_3dvar`` alone,
+   first run its prerequisite cases:
 
    .. code-block:: console
 
@@ -460,11 +465,14 @@ UFS Weather Model Regression Tests
 
    .. code-block:: console
 
-      cd ~/ufs-weather-model/tests/
-      cp rt.conf my_rt.conf
+      cd /path/to/ufs-weather-model/tests
       vim my_rt.conf
 
-#. Edit ``COMPILE`` and ``RUN`` lines for the cases of interest. For example:
+   Replace ``/path/to/ufs-weather-model`` with the path to your UFS Weather
+   Model checkout.
+
+#. Copy the ``COMPILE`` and ``RUN`` lines for the cases of interest from
+   ``rt.conf`` into ``my_rt.conf``. For example:
 
    .. code-block:: text
 
@@ -487,6 +495,11 @@ UFS Weather Model Regression Tests
 
       ./rt.sh -a epic -kl my_rt.conf >& my_rt.out &
 
+   .. note::
+
+      When running multiple tests, add ``-e`` to submit through ecFlow or ``-r``
+      to submit through Rocoto.
+
 .. list-table:: Selected ``rt.sh`` flags
    :header-rows: 1
    :widths: 15 85
@@ -494,23 +507,25 @@ UFS Weather Model Regression Tests
    * - Flag
      - Description
    * - ``-c``
-     - Create new baseline results.
+     - Create new baseline results
    * - ``-e``
-     - Use ecFlow workflow manager.
+     - Use ecFlow workflow manager
    * - ``-h``
-     - Display help.
+     - Display help
    * - ``-k``
-     - Keep run directory.
+     - Keep run directory
    * - ``-l``
-     - Run tests listed in a file.
+     - Run tests listed in a file
    * - ``-m``
-     - Compare against new baseline results.
+     - Compare against new baseline results
    * - ``-n``
-     - Run a single named test.
+     - Run a single named test
    * - ``-r``
-     - Use Rocoto workflow manager.
+     - Use Rocoto workflow manager
 
-After the test starts, inspect the case directory:
+After the test starts, inspect the case directory. The ``{dprefix}`` value is
+set in ``rt.sh``, and the regression-test driver prints the ``rt_[test_id]``
+directory name when the run starts:
 
 .. code-block:: console
 
@@ -600,6 +615,8 @@ global-workflow cases.
       rocotorun -w [sample_case]_test.xml -d [sample_case]_test.db
       rocotostat -w [sample_case]_test.xml -d [sample_case]_test.db
 
-Output files are written under the configured ``COMROOT``. Log files are under
-``COMROOT/[sample_case]_test/logs``, and temporary run directories are under the
-configured ``STMP`` path.
+Output files are written under the configured ``COMROOT``. After generating the
+sample workflow, inspect the generated experiment configuration in
+``EXPDIR/[sample_case]_test`` to confirm the resolved ``COMROOT`` and ``STMP``
+values. Log files are under ``COMROOT/[sample_case]_test/logs``, and temporary
+run directories are under the configured ``STMP`` path.
