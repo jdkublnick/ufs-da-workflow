@@ -232,7 +232,7 @@ Coupling: ATM/LND (APP=``ATML``)
    * - WW3
      - OFF
      - Wave model (WaveWatch III)
-   * - STOCK_PHYS
+   * - STOCH_PHYS
      - ON
      - Physics component of atmospheric model
    * - CDEPS
