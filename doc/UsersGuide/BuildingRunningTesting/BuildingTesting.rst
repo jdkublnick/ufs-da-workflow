@@ -26,7 +26,7 @@ Retrieve the default ``develop`` branch from the
 The path to the ``ufs-da-workflow`` directory is referred to as
 ``${HOMEufsda}`` in this documentation.
 
-The workflow checkout contains the source, scripts, configuration files, and
+The workflow checkout contains the subrepositories, scripts, configuration files, and
 build support files. Some directories, such as ``exec`` and ``lib64``, are
 created by the build process.
 
