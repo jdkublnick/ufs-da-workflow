@@ -99,11 +99,7 @@ The ``ufs-da-workflow`` repository uses the following directory structure.
    │     ├── jjob_env_setup.sh
    │     └── setup_wflow_env.py
    ├── scripts
-   │     ├── exufsda_analysis.sh
-   │     ├── exufsda_fcst_ic.sh
-   │     ├── exufsda_forecast.sh
-   │     ├── exufsda_plot_stats.sh
-   │     └── exufsda_prep_data.sh
+   │     └── exufsda_<task_name>.sh
    ├── sorc
    │     ├── CMakeLists.txt
    │     ├── app_build.sh
