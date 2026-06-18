@@ -49,49 +49,32 @@ Workflow Vertical Directory Structure
 
 The ``ufs-da-workflow`` repository uses the following directory structure.
 
+.. note::
+
+   Some files and directories are omitted for concision and clarity.
+
 .. code-block:: console
 
    ufs-da-workflow
    ├── doc
-   │     ├── doc-snippets
-   │     ├── UsersGuide
-   │     ├── _static
-   │     ├── conf.py
-   │     ├── index.rst
-   │     ├── Makefile
-   │     ├── make.bat
-   │     ├── README_git
-   │     ├── references.bib
-   │     ├── requirements.in
-   │     └── requirements.txt
+   │     └── UsersGuide
    ├── ecf
-   │     ├── defs
    │     ├── include
-   │     ├── template.begin_suite.sh
-   │     ├── template.control_suite.sh
-   │     ├── template.start_server.sh
+   │     ├── template.*.sh
    │     └── stop_server.sh
    ├── fix
    ├── modulefiles
    │     ├── tasks
    │     │     ├── common
-   │     │     ├── derecho
-   │     │     ├── gaeac6
-   │     │     ├── hercules
-   │     │     ├── orion
-   │     │     └── ursa
+   │     │     └── <platform>
    │     ├── ufs_common.lua
    │     ├── ufsda_<platform>.intel.lua
    │     └── wflow_<workflow_manager>_<platform>.lua
    ├── parm
    │     ├── config_default
    │     ├── config_samples
-   │     ├── jedi
-   │     │     ├── fieldmetadata
-   │     │     ├── fv3
-   │     │     └── soca
    │     ├── templates
-   │     │     ├── gocart
+   │     │     ├── template.*
    │     │     └── task_env
    │     ├── automate_launch_script.py
    │     ├── detect_platform.sh
@@ -99,38 +82,27 @@ The ``ufs-da-workflow`` repository uses the following directory structure.
    │     ├── jjob_env_setup.sh
    │     └── setup_wflow_env.py
    ├── scripts
-   │     ├── exufsda_analysis.sh
-   │     ├── exufsda_fcst_ic.sh
-   │     ├── exufsda_forecast.sh
-   │     ├── exufsda_plot_stats.sh
-   │     └── exufsda_prep_data.sh
+   │     └── exufsda_*.sh
    ├── sorc
    │     ├── CMakeLists.txt
-   │     ├── app_build.sh
+   │     ├── UFS_UTILS.fd
+   │     ├── UFS_UTILS_nofrac.fd
    │     ├── apply_incr.fd
    │     ├── calcfIMS.fd
+   │     ├── app_build.sh
    │     ├── jcb-algorithms
    │     ├── jcb-gdas
    │     ├── jedi-bundle
    │     ├── tile2tile_converter.fd
-   │     ├── ufs_model.fd
-   │     ├── UFS_UTILS.fd
-   │     └── UFS_UTILS_nofrac.fd
+   │     └── ufs_model.fd
    ├── ush
-   │     ├── bkg_var_replace.py
-   │     ├── compare.py
-   │     ├── compare_nc_vars.py
    │     ├── fill_jinja_template.py
    │     ├── jcb_setup.py
-   │     ├── letkf_create_ens.py
    │     ├── plot_*.py
    │     └── *_ioda*.py
    ├── versions
    │     └── run.ver_<platform>
-   ├── .gitignore
    ├── .gitmodules
-   ├── .readthedocs.yaml
-   ├── LICENSE
    └── README.md
 
 On WCOSS, operational products must set ``OPSROOT`` to

@@ -6,6 +6,8 @@ Rocoto Introductory Information
 Rocoto is one of the workflow managers supported by the UFS DA Workflow. When
 ``WORKFLOW_MANAGER`` is set to ``rocoto`` in ``config.yaml``, the experimental
 case directory is set up to run workflow tasks with the Rocoto workflow manager.
+See the `Rocoto documentation <https://noaa-gsl.github.io/rocoto/>`_ for
+additional command usage and workflow-manager details.
 
 In the examples below, ``${HOMEufsda}`` refers to the full path of the cloned
 ``ufs-da-workflow`` repository.
@@ -119,15 +121,18 @@ Launch the workflow manually:
 
 .. include:: ../../doc-snippets/rocoto-expdir.rst
 
+Replace ``[EXP_CASE_NAME]`` with the experiment case name set in
+``config.yaml``.
+
 .. code-block:: console
 
-   rocotorun -w land_analysis.xml -d land_analysis.db -v 10
+   rocotorun -w [EXP_CASE_NAME].xml -d [EXP_CASE_NAME].db -v 10
 
 Check task status:
 
 .. code-block:: console
 
-   rocotostat -w land_analysis.xml -d land_analysis.db -v 10
+   rocotostat -w [EXP_CASE_NAME].xml -d [EXP_CASE_NAME].db -v 10
 
 .. _rocoto-restart-dead-task:
 
@@ -147,20 +152,20 @@ After resolving the underlying issue, rewind the failed task:
 
 .. code-block:: console
 
-   rocotorewind -w land_analysis.xml -d land_analysis.db -c 200001030000 -t forecast
+   rocotorewind -w [EXP_CASE_NAME].xml -d [EXP_CASE_NAME].db -c 200001030000 -t forecast
 
 The cycle supplied with ``-c`` must include minutes in ``YYYYMMDDHHmm`` format.
 To rewind multiple tasks:
 
 .. code-block:: console
 
-   rocotorewind -w land_analysis.xml -d land_analysis.db -c 200001030000 -t 'analysis,forecast'
+   rocotorewind -w [EXP_CASE_NAME].xml -d [EXP_CASE_NAME].db -c 200001030000 -t 'analysis,forecast'
 
 Submit the rewound task again:
 
 .. code-block:: console
 
-   rocotoboot -w land_analysis.xml -d land_analysis.db -c 200001030000 -t forecast
+   rocotoboot -w [EXP_CASE_NAME].xml -d [EXP_CASE_NAME].db -c 200001030000 -t forecast
 
 .. _rocoto-command-flags:
 
