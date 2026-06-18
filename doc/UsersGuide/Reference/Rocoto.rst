@@ -36,7 +36,7 @@ In ``config.yaml``, set:
      WORKFLOW_MANAGER: rocoto
 
 Based on the ``WORKFLOW_MANAGER`` parameter in the configuration file, a Rocoto
-XML file is generated in the experimental directory.
+XML file is generated in the experiment directory.
 
 .. _rocoto-automated-launch:
 

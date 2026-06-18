@@ -186,7 +186,7 @@ Glossary
       The Finite-Volume Cubed-Sphere dynamical core (dycore). Developed at
       NOAA's `Geophysical Fluid Dynamics Laboratory <https://www.gfdl.noaa.gov/fv3/>`__,
       it is a scalable and flexible dycore capable of both hydrostatic and
-      non-hydrostatic atmospheric simulations. It is the dycore used in the UFS
+      non-hydrostatic atmospheric simulations. It is one of the dycore options available in the UFS
       Weather Model.
 
    GDAS
