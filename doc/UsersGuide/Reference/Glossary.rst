@@ -141,7 +141,7 @@ Glossary
 
    ERA5
       The ECMWF Reanalysis v5
-      (`ERA5 <https://www.ecmwf.int/en/forecasts/dataset/ecmwf-reanalysis-v5>`_)
+      (`ERA5 <https://climate.copernicus.eu/climate-reanalysis>`_)
       dataset is the fifth-generation ECMWF atmospheric reanalysis.
 
    ESMF
@@ -252,7 +252,7 @@ Glossary
       package can run on a variety of platforms and for a variety of purposes,
       and it is designed to readily accommodate new atmospheric and oceanic
       models and new observation systems. The
-      `JEDI User's Guide <https://jointcenterforsatellitedataassimilation-jedi-docs.readthedocs-hosted.com/en/latest/>`_
+      `JEDI User's Guide <https://jcsda-jedi-docs.readthedocs-hosted.com/en/latest/>`_
       contains extensive information on the software.
 
       JEDI is developed and distributed by the
@@ -313,7 +313,7 @@ Glossary
       The `National Center for Atmospheric Research <https://ncar.ucar.edu/>`_.
 
    netCDF
-      NetCDF (`Network Common Data Form <https://www.unidata.ucar.edu/software/netcdf/>`_)
+      NetCDF (`Network Common Data Form <https://docs.unidata.ucar.edu/netcdf-c/current/>`_)
       is a file format and community standard for storing multidimensional
       scientific data. It includes a set of software libraries and
       machine-independent data formats that support the creation, access, and
