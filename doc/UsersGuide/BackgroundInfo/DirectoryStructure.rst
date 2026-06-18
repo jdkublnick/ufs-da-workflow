@@ -75,11 +75,7 @@ The ``ufs-da-workflow`` repository uses the following directory structure.
    ├── modulefiles
    │     ├── tasks
    │     │     ├── common
-   │     │     ├── derecho
-   │     │     ├── gaeac6
-   │     │     ├── hercules
-   │     │     ├── orion
-   │     │     └── ursa
+   │     │     └── <machine>
    │     ├── ufs_common.lua
    │     ├── ufsda_<platform>.intel.lua
    │     └── wflow_<workflow_manager>_<platform>.lua
