@@ -173,5 +173,4 @@ HPC systems. During installation, ``sorc/app_build.sh`` creates symbolic links
 from those centralized locations into the workflow ``fix`` directory.
 
 To use custom static data, remove the relevant symbolic link in ``fix`` and
-place the custom data under the same directory structure expected by the
-workflow.
+link or move the custom data to the ``fix`` directory.
