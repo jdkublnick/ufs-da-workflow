@@ -61,6 +61,10 @@ rst_prolog = """
 # Can be found using navigator.userAgent inside a browser console.
 user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
 
+# Keep slow external sites from making linkcheck look hung.
+linkcheck_timeout = 5
+linkcheck_report_timeouts_as_broken = False
+
 # Ignore working links that cause a linkcheck 403 error.
 linkcheck_ignore = [r'https://www\.intel\.com/content/www/us/en/developer/tools/oneapi/hpc\-toolkit\-download\.html',
                     r'https://doi.org/*',
